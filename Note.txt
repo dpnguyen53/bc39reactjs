@@ -13,3 +13,10 @@
     - Communicate: giao tiếp các component
         + Props: truyền data từ component cha => component con
         + Lifting State Up: truyền data từ component con => component cha
+
+====== Buổi 4 ======
+    - Cart Demo
+
+====== Buổi 5 ======
+    - User management
+    - Form
