@@ -8,6 +8,7 @@ import RenderColorCar from "./renderColorCar";
 import ListKeys from "./list-keys";
 import Communicate from "./communicate";
 import Shoes from "./shoes";
+import CartDemo from "./CartDemo/CartDemo";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
       <Communicate />
       <hr />
       <Shoes />
+      <hr />
+      <CartDemo />
 
       <br />
       <br />
