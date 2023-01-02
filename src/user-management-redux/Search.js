@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { actSearch } from "./../redux/reducers/user/action";
 
 class Search extends Component {
   handleOnchange = (event) => {
-    this.props.getKeyword(event.target.value);
+    this.props.searchUser(event.target.value);
   };
 
   render() {
@@ -16,4 +18,12 @@ class Search extends Component {
   }
 }
 
-export default Search;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchUser: (keyword) => {
+      dispatch(actSearch(keyword));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Search);

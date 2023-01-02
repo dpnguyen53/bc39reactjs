@@ -1,3 +1,5 @@
+https://github.com/dpnguyen53/bc39reactjs
+
 ====== Buổi 1 ======
     - Component:
         + Stateful Component: class
@@ -24,3 +26,6 @@
 ====== Buổi 6 ======
     - User management
     - Redux
+
+====== Buổi 7 ======
+    - User management Redux

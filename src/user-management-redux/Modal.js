@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { actSubmit } from "./../redux/reducers/user/action";
 
 class Modal extends Component {
   constructor(props) {
@@ -13,7 +15,6 @@ class Modal extends Component {
     };
 
     this.closeModal = React.createRef();
-    console.log("constructor");
   }
 
   handleOnchange = (event) => {
@@ -29,7 +30,7 @@ class Modal extends Component {
   handleSubmit = (event) => {
     //chặn load lại trang web
     event.preventDefault();
-    this.props.getUserSubmit(this.state);
+    this.props.submitUser(this.state);
     //Close modal
     this.closeModal.current.click();
   };
@@ -59,7 +60,6 @@ class Modal extends Component {
   }
 
   render() {
-    console.log(this.props.userEdit);
     return (
       <div
         className="modal fade"
@@ -151,4 +151,18 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+const mapStateToProps = (state) => {
+  return {
+    userEdit: state.userReducer.userEdit,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    submitUser: (user) => {
+      dispatch(actSubmit(user));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
