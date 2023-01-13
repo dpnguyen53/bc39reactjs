@@ -29,3 +29,10 @@ https://github.com/dpnguyen53/bc39reactjs
 
 ====== Buổi 7 ======
     - User management Redux
+
+====== Buổi 8 ======
+    - React Router Dom
+
+====== Buổi 9 ======
+    - Form validation
+    - Lifecycle
