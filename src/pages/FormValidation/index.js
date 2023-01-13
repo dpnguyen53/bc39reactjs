@@ -4,9 +4,16 @@ export default class FormValidation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      manv: "",
-      tennv: "",
-      email: "",
+      values: {
+        manv: "",
+        tennv: "",
+        email: "",
+      },
+      errors: {
+        manv: "",
+        tennv: "",
+        email: "",
+      },
     };
   }
 
@@ -14,13 +21,15 @@ export default class FormValidation extends Component {
     const { name, value } = e.target;
     this.setState(
       {
-        [name]: value,
+        values: { ...this.state.values, [name]: value },
       },
       () => {
         console.log(this.state);
       }
     );
   };
+
+  handleError = () => {};
 
   render() {
     return (
@@ -34,6 +43,7 @@ export default class FormValidation extends Component {
               className="form-control"
               name="manv"
               onChange={this.handleOnChange}
+              onBlur={this.handleError}
             />
           </div>
           <div className="form-group">
@@ -43,6 +53,7 @@ export default class FormValidation extends Component {
               className="form-control"
               name="tennv"
               onChange={this.handleOnChange}
+              onBlur={this.handleError}
             />
           </div>
           <div className="form-group">
@@ -52,6 +63,7 @@ export default class FormValidation extends Component {
               className="form-control"
               name="email"
               onChange={this.handleOnChange}
+              onBlur={this.handleError}
             />
           </div>
           <button type="submit" className="btn btn-success">
