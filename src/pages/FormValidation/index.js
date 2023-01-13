@@ -14,6 +14,10 @@ export default class FormValidation extends Component {
         tennv: "",
         email: "",
       },
+      manvValid: false,
+      tennvValid: false,
+      emailValid: false,
+      formValid: false,
     };
   }
 
@@ -29,7 +33,49 @@ export default class FormValidation extends Component {
     );
   };
 
-  handleError = () => {};
+  handleError = (e) => {
+    const { name, value } = e.target;
+
+    let mess = value.trim() === "" ? `(*) Vui long nhap ${name}` : "";
+    let { manvValid, tennvValid, emailValid } = this.state;
+    switch (name) {
+      case "manv":
+        manvValid = mess === "" ? true : false;
+        if (value && value.length < 4) {
+          mess = "Vui long nhap tu 4 ki tu tro len";
+          manvValid = false;
+        }
+        break;
+
+      case "tennv":
+        tennvValid = mess === "" ? true : false;
+        break;
+
+      case "email":
+        emailValid = mess === "" ? true : false;
+        if (value && !value.match("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$")) {
+          mess = "Vui long nhap email dung dinh dang!";
+          emailValid = false;
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    this.setState(
+      {
+        errors: { ...this.state.errors, [name]: mess },
+        manvValid,
+        tennvValid,
+        emailValid,
+        formValid: manvValid && tennvValid && emailValid,
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+  };
 
   render() {
     return (
@@ -45,6 +91,9 @@ export default class FormValidation extends Component {
               onChange={this.handleOnChange}
               onBlur={this.handleError}
             />
+            {this.state.errors.manv && (
+              <div className="alert alert-danger">{this.state.errors.manv}</div>
+            )}
           </div>
           <div className="form-group">
             <label>Tên nhân viên</label>
@@ -55,6 +104,11 @@ export default class FormValidation extends Component {
               onChange={this.handleOnChange}
               onBlur={this.handleError}
             />
+            {this.state.errors.tennv && (
+              <div className="alert alert-danger">
+                {this.state.errors.tennv}
+              </div>
+            )}
           </div>
           <div className="form-group">
             <label>Email</label>
@@ -65,8 +119,17 @@ export default class FormValidation extends Component {
               onChange={this.handleOnChange}
               onBlur={this.handleError}
             />
+            {this.state.errors.email && (
+              <div className="alert alert-danger">
+                {this.state.errors.email}
+              </div>
+            )}
           </div>
-          <button type="submit" className="btn btn-success">
+          <button
+            type="submit"
+            className="btn btn-success"
+            disabled={!this.state.formValid}
+          >
             Submit
           </button>
         </form>

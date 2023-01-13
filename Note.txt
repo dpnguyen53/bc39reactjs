@@ -36,3 +36,10 @@ https://github.com/dpnguyen53/bc39reactjs
 ====== Buổi 9 ======
     - Form validation
     - Lifecycle
+
+
+Home work
+ - Create new project: bc39movie
+ - bs4 
+ - install & config redux react-redux
+ - install react router dom
